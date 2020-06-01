@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mhz.mybatis.demo.mapper.DynamicSQLMapper">
+
+    <select id="ifTag" resultType="com.mhz.mybatis.demo.model.Product">
+        select * from product_
+--      如果 test == true 则拼接SQL
+        <if test="name!=null">
+            where name like concat('%',#{name},'%')
+        </if>
+    </select>
+
+
+    <select id="whereTag" resultType="com.mhz.mybatis.demo.model.Product" parameterType="com.mhz.mybatis.demo.model.Product">
+        select * from product_
+--      where标签其实就是用来解决使用SQL时where 1=1 的问题
+        <where>
+            <if test="name!=null">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="price!=null and price!=0">
+                and price > #{price}
+            </if>
+        </where>
+    </select>
+
+    <select id="trimWhereTag" resultType="com.mhz.mybatis.demo.model.Product" parameterType="com.mhz.mybatis.demo.model.Product">
+        select * from product_
+--         定制标签 prefix前缀 prefixOverrides判断后面的替换符
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="name!=null">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="price!=null and price!=0">
+                and price > #{price}
+            </if>
+        </trim>
+    </select>
+
+
+    <update id="setTag" parameterType="com.mhz.mybatis.demo.model.Product">
+        update product_
+--         同where功能基本一致
+        <set>
+            <if test="name != null">`name`=#{name},</if>
+            <if test="price != null">price=#{price},</if>
+        </set> where id=#{id}
+    </update>
+
+    <update id="trimSetTag" parameterType="com.mhz.mybatis.demo.model.Product">
+        update product_
+--         定制标签 prefix前缀 suffixOverrides判断后面的替换符
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">`name`=#{name},</if>
+            <if test="price != null">price=#{price},</if>
+        </trim> where id=#{id}
+    </update>
+
+</mapper>
