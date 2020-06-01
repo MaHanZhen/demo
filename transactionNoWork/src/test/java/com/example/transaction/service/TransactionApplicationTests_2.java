@@ -15,10 +15,8 @@ class TransactionApplicationTests_2 {
     private NoWorkingService noWorkingService_2;
 
 
-
-
     @Test
-    void noWorkModel2(){
+    void noWorkModel2() {
         noWorkingService_2.noWorkModel2_2();
     }
 

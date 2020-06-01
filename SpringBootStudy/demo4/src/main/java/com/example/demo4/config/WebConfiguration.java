@@ -11,6 +11,7 @@ public class WebConfiguration {
 
     /**
      * 默认情况下，过滤器执行的顺序与添加的顺序相同
+     *
      * @return
      */
     @Bean //同等与XML配置中的 bean

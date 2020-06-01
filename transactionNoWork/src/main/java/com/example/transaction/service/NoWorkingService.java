@@ -19,12 +19,12 @@ public class NoWorkingService implements INoWorkingService {
     }
 
     @Transactional
-    public void noWorkModel1_1(){
+    public void noWorkModel1_1() {
         User user = new User();
         user.setName("noWorkModel1_1");
         user.setAge(777);
         userDao.save(user);
-        int q = 1/0;
+        int q = 1 / 0;
     }
 
 
@@ -41,7 +41,7 @@ public class NoWorkingService implements INoWorkingService {
         user.setName("noWorkModel2_2");
         user.setAge(777);
         userDao.save(user);
-        int q = 1/0;
+        int q = 1 / 0;
     }
 
 
@@ -53,8 +53,8 @@ public class NoWorkingService implements INoWorkingService {
         user.setAge(777);
         userDao.save(user);
         try {
-            int q = 1/0;
-        }catch (Exception e){
+            int q = 1 / 0;
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -62,7 +62,7 @@ public class NoWorkingService implements INoWorkingService {
     @Override
     public void noWorkModel4_1() {
         noWorkModel4_2();
-        int q = 1/0;
+        int q = 1 / 0;
     }
 
     @Override
