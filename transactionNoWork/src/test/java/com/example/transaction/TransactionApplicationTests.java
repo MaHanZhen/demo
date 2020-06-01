@@ -16,23 +16,22 @@ class TransactionApplicationTests {
     private INoWorkingService noWorkingService;
 
 
-
     @Test
     void contextLoads() {
     }
 
     @Test
-    void noWorkModel1(){
+    void noWorkModel1() {
         noWorkingService.noWorkModel1();
     }
 
     @Test
-    void noWorkModel3(){
+    void noWorkModel3() {
         noWorkingService.noWorkModel3();
     }
 
     @Test
-    void noWorkModel4(){
+    void noWorkModel4() {
         noWorkingService.noWorkModel4_1();
     }
 

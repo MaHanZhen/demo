@@ -14,13 +14,13 @@ public class Student {
     private String name;
 
     @NotNull(message = "传入成绩为null")
-    @Min(value = 0,message ="成绩应大于0")
-    @Max(value = 0,message ="成绩应小于100")
+    @Min(value = 0, message = "成绩应大于0")
+    @Max(value = 0, message = "成绩应小于100")
     private Integer score;
 
     @NotNull(message = "传入电话为null")
     @NotEmpty(message = "传入电话为空字符串")
-    @Length(min = 11,max =11,message ="电话号码长度有误")
+    @Length(min = 11, max = 11, message = "电话号码长度有误")
     private String mobile;
 
     public String getName() {

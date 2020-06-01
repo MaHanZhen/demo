@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mhz.mybatis.demo.mapper.OrderMapper">
+
+    <resultMap type="com.mhz.mybatis.demo.model.Order" id="orderBean">
+        <id column="oid" property="id" />
+        <result column="code" property="code" />
+
+        <collection property="products" ofType="com.mhz.mybatis.demo.model.Product">
+            <id column="pid" property="id" />
+            <result column="pname" property="name" />
+            <result column="price" property="price" />
+        </collection>
+    </resultMap>
+
+    <!-- 根据id查询Product, 关联将Orders查询出来 -->
+    <select id="listOrderMoreAndMore" resultMap="orderBean">
+        select o.*,p.*, o.id 'oid', p.id 'pid',  p.name 'pname'
+		from order_ o
+		left join order_item_ oi	on o.id =oi.oid
+		left join product_ p on p.id = oi.pid
+    </select>
+
+
+
+</mapper>

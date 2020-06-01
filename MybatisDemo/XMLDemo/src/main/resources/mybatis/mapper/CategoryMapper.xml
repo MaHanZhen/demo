@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mhz.mybatis.demo.mapper.CategoryMapper">
+
+    <resultMap type="com.mhz.mybatis.demo.model.Category" id="categoryBean">
+        <id column="cid" property="id" />
+        <result column="cname" property="name" />
+
+        <!-- 一对多的关系 -->
+        <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+        <collection property="products" ofType="com.mhz.mybatis.demo.model.Product">
+            <id column="pid" property="id" />
+            <result column="pname" property="name" />
+            <result column="price" property="price" />
+        </collection>
+    </resultMap>
+
+    <insert id="addCategory" parameterType="com.mhz.mybatis.demo.model.Category">
+            insert into category_ ( name ) values (#{name})
+    </insert>
+
+    <delete id="deleteCategory" parameterType="long">
+            delete from category_ where id= #{id}
+    </delete>
+
+    <select id="getCategory" parameterType="long" resultType="com.mhz.mybatis.demo.model.Category">
+            select * from   category_  where id= #{id}
+    </select>
+
+    <update id="updateCategory" parameterType="com.mhz.mybatis.demo.model.Category">
+            update category_ set name=#{name} where id=#{id}
+    </update>
+
+    <select id="listCategory" resultType="com.mhz.mybatis.demo.model.Category">
+            select * from   category_
+    </select>
+
+    <select id="listCategoryByNameAndId" resultType="com.mhz.mybatis.demo.model.Category">
+            select * from   category_ where name like concat('%',#{name},'%') and id > #{id}
+    </select>
+
+    <select id="listCategoryByBean" parameterType="com.mhz.mybatis.demo.model.Category" resultType="com.mhz.mybatis.demo.model.Category">
+            select * from   category_ where name like concat('%',#{name},'%') and id > #{id}
+    </select>
+
+
+    <!-- 关联查询分类和产品表 -->
+    <select id="listCategoryOneAndMore" resultMap="categoryBean">
+            select c.*, p.*, c.id 'cid', p.id 'pid', c.name 'cname', p.name 'pname' from category_ c left join product_ p on c.id = p.cid
+    </select>
+</mapper>

@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalExceptionInterceptor {
 
     @ExceptionHandler(value = Exception.class)  //定义异常处理器
-    public String exceptionHandler(HttpServletRequest request,Exception e) {
+    public String exceptionHandler(HttpServletRequest request, Exception e) {
         String failMessage = null;
 
         //判断是否为绑定异常
-        if(e instanceof BindException){
-            BindException ex = (BindException)e;
-             failMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
+        if (e instanceof BindException) {
+            BindException ex = (BindException) e;
+            failMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
         }
         return failMessage;
     }

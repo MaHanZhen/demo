@@ -13,7 +13,7 @@ public class ProController {
     NeoProperties neoProperties;
 
     @GetMapping("/getPro")
-    public NeoProperties getPro(){
+    public NeoProperties getPro() {
         return neoProperties;
     }
 
