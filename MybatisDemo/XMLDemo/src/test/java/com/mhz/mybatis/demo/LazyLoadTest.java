@@ -3,7 +3,6 @@ package com.mhz.mybatis.demo;
 import com.mhz.mybatis.demo.mapper.LazyLoadMapper;
 import com.mhz.mybatis.demo.model.Order;
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
@@ -14,7 +13,6 @@ import java.util.List;
  * 一对多 多对一 多对多
  */
 @SpringBootTest
-@MapperScan("com.mhz.mybatis.demo.mapper")
 public class LazyLoadTest {
 
 
