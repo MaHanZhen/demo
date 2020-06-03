@@ -57,4 +57,44 @@
         </trim> where id=#{id}
     </update>
 
+
+    <select id="chooseTag"  resultType="com.mhz.mybatis.demo.model.Product" parameterType="com.mhz.mybatis.demo.model.Product">
+--         与JAVA里面的switch句法类似 if else 在这里携程 when otherwise的形式
+        SELECT * FROM product_
+        <where>
+            <choose>
+                <when test="name != null">
+                    and name like concat('%',#{name},'%')
+                </when>
+                <when test="price !=null and price != 0">
+                    and price > #{price}
+                </when>
+                <otherwise>
+                    and id >1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="foreachTag"  resultType="com.mhz.mybatis.demo.model.Product" parameterType="ArrayList">
+    SELECT * FROM product_
+    WHERE ID in
+--      open
+--      for(Object id : Object ids){
+--          id+separator...
+--      }
+--     end
+    <foreach item="id" index="index" collection="ids"
+             open="(" separator="," close=")">
+        #{id}
+    </foreach>
+    </select>
+
+    <select id="bindTag" resultType="com.mhz.mybatis.demo.model.Product">
+
+<!--    本来的模糊查询方式 -->
+<!--    select * from   product_  where name like concat('%',#{0},'%') -->
+        <bind name="likename" value="'%' + name + '%'" />
+        select * from   product_  where name like #{likename}
+    </select>
 </mapper>

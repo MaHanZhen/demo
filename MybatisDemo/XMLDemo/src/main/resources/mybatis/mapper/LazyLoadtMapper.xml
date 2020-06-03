@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mhz.mybatis.demo.mapper.LazyLoadMapper">
+
+    <resultMap type="com.mhz.mybatis.demo.model.Order" id="orderBean">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+
+<!--        如果不配置开启延迟加载 查询完后会直接调用子查询-->
+<!--        column 延迟加载传入的参数 select延迟加载使用的SQL 可以通过名称空间.的方式调用其他mapper的SQL-->
+        <collection property="products" ofType="com.mhz.mybatis.demo.model.Product"
+                    column="id" select="listProductByCid"
+        >
+            <id column="id" property="id" />
+            <result column="name" property="name" />
+            <result column="price" property="price" />
+        </collection>
+    </resultMap>
+
+
+<!--    主查询SQL-->
+    <select id="listLazyLoadOrder" resultMap="orderBean">
+        select  * from order_
+    </select>
+
+<!--    延迟加载SQL-->
+    <select id="listProductByCid" resultType="com.mhz.mybatis.demo.model.Product" parameterType="Long">
+-- ID就是配置的column字段的名称
+        select  * from product_ where cid = #{id}
+    </select>
+
+
+</mapper>
