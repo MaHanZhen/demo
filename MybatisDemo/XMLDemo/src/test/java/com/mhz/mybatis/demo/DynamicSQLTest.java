@@ -14,7 +14,6 @@ import java.util.List;
  * 动态SQL
  */
 @SpringBootTest
-@MapperScan("com.mhz.mybatis.demo.mapper")
 public class DynamicSQLTest {
 
     @Resource

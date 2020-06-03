@@ -3,7 +3,6 @@ package com.mhz.mybatis.demo;
 import com.mhz.mybatis.demo.mapper.CategoryMapper;
 import com.mhz.mybatis.demo.model.Category;
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
@@ -14,7 +13,6 @@ import java.util.List;
  * 普通CRUD的测试
  */
 @SpringBootTest
-@MapperScan("com.mhz.mybatis.demo.mapper")
 public class CRUDTest {
 
     @Resource

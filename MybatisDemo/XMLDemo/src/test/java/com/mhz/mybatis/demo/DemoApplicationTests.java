@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 
 @SpringBootTest
-@MapperScan("com.mhz.mybatis.demo.mapper")
 class DemoApplicationTests {
 
     @Resource

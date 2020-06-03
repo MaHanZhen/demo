@@ -7,7 +7,6 @@ import com.mhz.mybatis.demo.model.Category;
 import com.mhz.mybatis.demo.model.Order;
 import com.mhz.mybatis.demo.model.Product;
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
@@ -19,7 +18,6 @@ import java.util.List;
  * 一对多 多对一 多对多
  */
 @SpringBootTest
-@MapperScan("com.mhz.mybatis.demo.mapper")
 public class JoinTest {
 
     @Resource
