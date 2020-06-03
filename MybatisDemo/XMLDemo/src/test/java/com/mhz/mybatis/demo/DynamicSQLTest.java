@@ -87,4 +87,43 @@ public class DynamicSQLTest {
         dynamicSQLMapper.trimSetTag(product);
 
     }
+
+
+    @Test
+    public void testChooseTag(){
+
+        Product product = new Product();
+
+        List<Product> productList = dynamicSQLMapper.chooseTag(product);
+        Assert.isTrue(5 == productList.size(),"查询结果不符合预期");
+
+        product.setName("product");
+        productList = dynamicSQLMapper.chooseTag(product);
+        Assert.isTrue(4 == productList.size(),"查询结果不符合预期");
+
+        product = new Product();
+        product.setPrice(90);
+        productList = dynamicSQLMapper.chooseTag(product);
+        Assert.isTrue(2 == productList.size(),"查询结果不符合预期");
+    }
+
+
+    @Test
+    public void testForeachTag(){
+
+
+        List<Product> productList = dynamicSQLMapper.foreachTag(1L,2L,3L);
+        Assert.isTrue(3 == productList.size(),"查询结果不符合预期");
+
+
+    }
+
+    @Test
+    public void testBindTag(){
+
+
+        List<Product> products = dynamicSQLMapper.bindTag("2");
+        Assert.isTrue(6 > products.size(),"查询结果不符合预期");
+    }
+
 }
