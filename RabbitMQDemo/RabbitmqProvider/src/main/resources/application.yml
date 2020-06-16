@@ -1,0 +1,12 @@
+spring:
+  #\u7ED9\u9879\u76EE\u6765\u4E2A\u540D\u5B57
+  application:
+    name: rabbitmq-provider
+  #\u914D\u7F6ErabbitMq \u670D\u52A1\u5668
+  rabbitmq:
+    host:
+    port: 5672
+    username:
+    password:
+    #\u865A\u62DFhost \u53EF\u4EE5\u4E0D\u8BBE\u7F6E,\u4F7F\u7528server\u9ED8\u8BA4host
+    virtual-host: my_vhost
